@@ -1,4 +1,4 @@
-import 'package:consumo_api/home_page.dart';
+import 'package:consumo_api/components/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(),
       home: const HomePage(),
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:consumo_api/components/usuario_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,7 +27,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Usuários'),
+        backgroundColor: const Color(0xFFD6651E),
+        title: const Center(child: Text('Consumindo API - Usuários')),
       ),
       body: FutureBuilder<List>(
           future: pegarUsuarios(),
@@ -43,17 +45,33 @@ class _HomePageState extends State<HomePage> {
                   itemCount:
                       snapshot.data!.length, //Trás a lista do tamanho que ela é
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: const CircleAvatar(
-                        backgroundColor: Colors.black38,
-                        child: Icon(
-                          Icons.person,
-                          color: Colors.white,
-                        ),
-                      ),
-                      title: Text(snapshot.data![index]['name']),
-                      subtitle: Text(snapshot.data![index]['phone']),
-                      trailing: Text(snapshot.data![index]['address']['city']),
+                    var usuario = snapshot.data![index];
+                    return Card(
+                      elevation: 5,
+                      margin: const EdgeInsets.only(top: 5, left: 5, right: 5),
+                      child: ListTile(
+                          leading: const CircleAvatar(
+                            backgroundColor: Colors.black26,
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.white,
+                            ),
+                          ),
+                          title: Text(
+                            usuario['name'],
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(usuario['phone']),
+                          trailing: Text(usuario['username']),
+                          onTap: () => {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        UsuarioPage(usuario: usuario),
+                                  ),
+                                ),
+                              }),
                     );
                   });
             }
