@@ -54,3 +54,13 @@ class UsuarioPage extends StatelessWidget {
     );
   }
 }
+
+String? estilizarL() {
+  const Text('',
+  textAlign: TextAlign.center,
+    style: TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+    ),
+  );
+}
